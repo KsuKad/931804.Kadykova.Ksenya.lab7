@@ -3,6 +3,7 @@ function add(figure){
         case 's':
             for (let i = 0; i < document.querySelector("input").value; i++) {
                 var used = document.createElement("div");
+                used.classList.add('figure');
                 used.style.position = "absolute";
                 used.style.opacity = "0.8";
                 used.style.left = Math.random() * 1200 + 10 + "px";
@@ -15,7 +16,8 @@ function add(figure){
             break;
     case 't':
 		for (let i = 0; i < document.querySelector("input").value; i++) {
-			var used = document.createElement("div");
+            var used = document.createElement("div");
+            used.classList.add('figure');
 			used.style.position = "absolute";
 			used.style.opacity = "0.8";
 			used.style.left = Math.random() * 1200 + 10 + "px";
@@ -30,7 +32,8 @@ function add(figure){
                 break;
     case 'c':
 			for (let i = 0; i < document.querySelector("input").value; i++) {
-				var used = document.createElement("div");
+                var used = document.createElement("div");
+                used.classList.add('figure');
 				used.style.position = "absolute";
 				used.style.opacity = "0.8";
 				used.style.left = Math.random() * 1200 + 10 + "px";
@@ -43,17 +46,18 @@ function add(figure){
             }
             break;
 		};
-		
-        used.addEventListener("dblclick", (event) => event.target.remove());
-        used.addEventListener("click", (event) => {
+        
+        document.querySelectorAll('.figure').forEach((used) =>{
+              used.addEventListener("click", (event) => {
             var letters = '0123456789ABCDEF';
             var color = '#';
             for (var i = 0; i < 6; i++) {color = color + letters[Math.floor(Math.random() * 16)];}
             if (figure == "t")
                 event.target.style.borderBottomColor = color
             else
-                event.target.style.background = color;}
-                );
+                event.target.style.background = color;});
+            used.addEventListener("dblclick", (event) => event.target.remove());
+        })
                 document.body.append(used)
             };
         
